@@ -1,26 +1,50 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Suspense>
+    <template #default>
+      <Home />
+    </template>
+    <template #fallback>
+      <SplashScreen />
+    </template>
+  </Suspense>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SplashScreen from '@/components/SplashScreen.vue'
+import { defineAsyncComponent } from 'vue'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    SplashScreen,
+    Home: defineAsyncComponent(() => new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(import('./components/Home.vue'))
+      }, 2500)
+    }))
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 62.5%;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+  }
+
+  :root {
+    --brand-green: #04b500;
+    --brand-blue: #0689b0;
+  }
+
+  .app {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 </style>
