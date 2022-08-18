@@ -17,7 +17,6 @@ const reload = () => location.reload()
     align-items: center;
     justify-content: space-around;
     height: 70px;
-    background: lavender;
   }
 
   .header img {
