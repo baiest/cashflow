@@ -1,8 +1,20 @@
 <template>
-  <h1>Hola</h1>
+  <Layout>
+    <template #header>
+      <Header />
+    </template>
+  </Layout>
 </template>
 
-<script setup>
+<script>
+import Layout from './Layout.vue'
+import Header from './Header.vue'
+export default {
+  components: {
+    Layout,
+    Header
+  }
+}
 </script>
 
 <style></style>
