@@ -26,7 +26,7 @@ export default {
     MovementCard
   },
   setup (props) {
-    const isShow = ref(true)
+    const isShow = ref(false)
     const toogleIsShow = () => {
       console.log('isShow')
       isShow.value = !isShow.value

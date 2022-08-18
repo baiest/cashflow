@@ -12,7 +12,7 @@
             graphic
         </template>
         <template #action>
-            action
+            <Action />
         </template>
       </Resume>
     </template>
@@ -27,13 +27,15 @@ import Layout from './Layout.vue'
 import Header from './Header.vue'
 import Resume from './Resume/Index.vue'
 import Movents from './Movements/Index.vue'
+import Action from './Action.vue'
 import { computed, ref } from 'vue'
 export default {
   components: {
     Layout,
     Header,
     Resume,
-    Movents
+    Movents,
+    Action
   },
   setup () {
     const amountTotal = ref(null)

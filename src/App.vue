@@ -27,6 +27,7 @@ export default {
 <style>
   * {
     box-sizing: border-box;
+    font-size: 1.6rem;
   }
   html {
     font-size: 62.5%;
@@ -35,7 +36,6 @@ export default {
   body {
     margin: 0;
     padding: 0;
-    font-size: 1.6rem;
   }
 
   :root {
