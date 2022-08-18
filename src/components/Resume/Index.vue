@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { currencyFormatter } from '@/utils/currency'
 import { computed, toRefs } from 'vue'
 
 export default {
@@ -21,11 +22,6 @@ export default {
   },
   setup (props) {
     const { amount } = toRefs(props)
-    const currencyFormatter = new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP',
-      minimumFractionDigits: 0
-    })
     const amountCurrency = computed(() => currencyFormatter.format(amount.value))
     return {
       amountCurrency

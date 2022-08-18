@@ -30,6 +30,7 @@ export default {
   }
   html {
     font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif
   }
   body {
     margin: 0;
@@ -45,6 +46,5 @@ export default {
   .app {
     min-height: 100vh;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
   }
 </style>
