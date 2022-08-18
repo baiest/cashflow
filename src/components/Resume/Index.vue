@@ -1,19 +1,35 @@
 <template>
   <div class="container">
     <p class="label">{{ label }}</p>
-    <h2 class="amount">{{ amount }}</h2>
+    <h2 class="amount">{{ amountCurrency }}</h2>
+    <div class="graphic">
+      <slot name="graphic"></slot>
+    </div>
+    <div class="action">
+      <slot name="action"></slot>
+    </div>
   </div>
 </template>
 
 <script>
+import { computed, toRefs } from 'vue'
 
 export default {
   props: {
     label: String,
     amount: Number
   },
-  setup () {
-
+  setup (props) {
+    const { amount } = toRefs(props)
+    const currencyFormatter = new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0
+    })
+    const amountCurrency = computed(() => currencyFormatter.format(amount.value))
+    return {
+      amountCurrency
+    }
   }
 }
 
