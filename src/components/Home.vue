@@ -4,7 +4,10 @@
       <Header />
     </template>
     <template #resume>
-      <Resume />
+      <Resume
+        :label="labelByAmount"
+        :amount="amountOrTotal"
+      />
     </template>
     <template #movements>
       <Movents />
@@ -17,12 +20,23 @@ import Layout from './Layout.vue'
 import Header from './Header.vue'
 import Resume from './Resume/Index.vue'
 import Movents from './Movents/Index.vue'
+import { computed, ref } from 'vue'
 export default {
   components: {
     Layout,
     Header,
     Resume,
     Movents
+  },
+  setup () {
+    const amountTotal = ref(null)
+    const amount = ref(0)
+    const labelByAmount = computed(() => amountTotal.value ? 'Ahorro Total' : '13/09/2022')
+    const amountOrTotal = computed(() => amountTotal.value || amount)
+    return {
+      labelByAmount,
+      amountOrTotal
+    }
   }
 }
 </script>

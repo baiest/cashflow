@@ -14,14 +14,13 @@ import { ref } from 'vue'
 
 const isShow = ref(false)
 const toogleIsShow = () => {
-  console.log(isShow.value)
   isShow.value = !isShow.value
 }
 </script>
 
 <style scoped>
   .movements{
-
+    padding: 10px;
   }
   .head {
     display: flex;
