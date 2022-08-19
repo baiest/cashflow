@@ -48,6 +48,10 @@ const onSubmit = () => {
       : -form.amount,
     date: new Date().getTime()
   })
+  form.title = ''
+  form.amount = null
+  form.description = ''
+  form.movementType = 'ingreso'
 }
 </script>
 

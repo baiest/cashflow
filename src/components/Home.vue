@@ -67,7 +67,7 @@ export default {
     })
 
     const create = (data) => {
-      movements.value = [...movements.value, { ...data, id: movements.value[movements.value.length - 1].id + 1 }]
+      movements.value = [...movements.value, { ...data, id: movements.value[movements.value.length - 1]?.id + 1 }]
     }
 
     const remove = (id) => {
