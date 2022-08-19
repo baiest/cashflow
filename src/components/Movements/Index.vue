@@ -1,18 +1,20 @@
 <template>
-  <section class="movements">
+  <section ref="container" :class="{'movements-container': true, 'show-body': isShow}" >
     <div class="head" @click="toogleIsShow">
       <span class="grip"></span>
     </div>
     <h2 class="title">Historial</h2>
-    <div class="body" v-show="isShow">
-      <MovementCard v-for="item in movements" :key="item.id"
-        :id="item.id"
-        :title="item.title"
-        :description="item.description"
-        :amount="item.amount"
-        @remove="remove"
-      />
-    </div>
+    <transition name="body">
+      <div class="body" v-show="isShow">
+        <MovementCard v-for="item in movements" :key="item.id"
+          :id="item.id"
+          :title="item.title"
+          :description="item.description"
+          :amount="item.amount"
+          @remove="remove"
+        />
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -28,15 +30,23 @@ export default {
   },
   setup (_, ctx) {
     const isShow = ref(false)
+    const container = ref(null)
     const toogleIsShow = () => {
       isShow.value = !isShow.value
+      if (isShow.value && container.value) {
+        container.value.parentElement.classList.add('show-body')
+      } else {
+        container.value.parentElement.classList.remove('show-body')
+      }
     }
 
     const remove = (id) => {
       ctx.emit('remove', id)
     }
+
     return {
       isShow,
+      container,
       toogleIsShow,
       remove
     }
@@ -45,8 +55,11 @@ export default {
 </script>
 
 <style scoped>
-  .movements{
+  .movements-container {
     padding: 10px;
+    padding-top: 0;
+    height: 100%;
+    overflow: auto;
   }
   .head {
     display: flex;
@@ -77,5 +90,15 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .body-enter-active,
+  .body-leave-active {
+    transition: opacity .2s ease;
+  }
+
+  .body-enter-from,
+  .body-leave-to {
+    opacity: 0;
   }
 </style>
