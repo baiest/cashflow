@@ -15,7 +15,7 @@ import Modal from './Modal.vue'
 import Form from './Form.vue'
 import { ref } from 'vue'
 
-const isOpenModal = ref(true)
+const isOpenModal = ref(false)
 const toogleModal = () => { isOpenModal.value = !isOpenModal.value }
 
 const submit = (data) => {

@@ -35,7 +35,6 @@ export default {
   .container {
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
   }
@@ -47,5 +46,13 @@ export default {
   .amount {
     color: var(--brand-green);
     margin: 5px;
+    font-size: 5rem;
+  }
+
+  .graphic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 </style>
