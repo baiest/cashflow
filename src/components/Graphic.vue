@@ -38,7 +38,7 @@
 
 <script setup>
 import { computed } from '@vue/reactivity'
-import { defineProps, toRefs, ref } from 'vue'
+import { defineProps, defineEmits, toRefs, ref } from 'vue'
 const props = defineProps({
   amounts: {
     type: Array,
@@ -61,16 +61,18 @@ const amountToPixels = (amount) => {
 const zero = computed(() => amountToPixels(0))
 
 const points = computed(() => {
-  const total = amounts.value.length - 1
+  const total = amounts.value.length
   return amounts.value.reduce((points, amount, i) => {
-    const x = (300 / total) * i
+    const x = (300 / total) * (i + 1)
     const y = amountToPixels(amount)
     return `${points} ${x},${y}`
-  }, '')
+  }, '0,100')
 })
 
 const showPointer = ref(false)
 const pointer = ref(0)
+
+const emit = defineEmits(['select'])
 
 const tap = ({ target, touches }) => {
   showPointer.value = true
@@ -79,6 +81,7 @@ const tap = ({ target, touches }) => {
   const touchX = touches[0].clientX
 
   pointer.value = ((touchX - elementX) * 300) / elementWidth
+  emit('select', 0)
 }
 const untap = () => {
   showPointer.value = false

@@ -41,7 +41,13 @@ const form = reactive({
 const emit = defineEmits(['submit'])
 
 const onSubmit = () => {
-  emit('submit', { ...form })
+  emit('submit', {
+    ...form,
+    amount: form.movementType === 'ingreso'
+      ? form.amount
+      : -form.amount,
+    date: new Date().getTime()
+  })
 }
 </script>
 

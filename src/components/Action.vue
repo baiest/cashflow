@@ -13,14 +13,16 @@
 <script setup>
 import Modal from './Modal.vue'
 import Form from './Form.vue'
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 const isOpenModal = ref(false)
 const toogleModal = () => { isOpenModal.value = !isOpenModal.value }
 
+const emit = defineEmits(['create'])
+
 const submit = (data) => {
-  console.log(data)
   isOpenModal.value = false
+  emit('create', data)
 }
 
 </script>

@@ -43,6 +43,7 @@ const remove = (idMovement) => {
     background: lightcyan;
     padding: 20px;
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     border-radius: 12px;
     color: #4c4c4c;

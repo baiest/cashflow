@@ -6,6 +6,7 @@
     <h2 class="title">Historial</h2>
     <div class="body" v-show="isShow">
       <MovementCard v-for="item in movements" :key="item.id"
+        :id="item.id"
         :title="item.title"
         :description="item.description"
         :amount="item.amount"
@@ -25,15 +26,14 @@ export default {
   components: {
     MovementCard
   },
-  setup (props) {
+  setup (_, ctx) {
     const isShow = ref(false)
     const toogleIsShow = () => {
-      console.log('isShow')
       isShow.value = !isShow.value
     }
 
     const remove = (id) => {
-      console.log('remove', id)
+      ctx.emit('remove', id)
     }
     return {
       isShow,
@@ -52,8 +52,11 @@ export default {
     display: flex;
     justify-content: center;
     padding: 20px 10px;
-    margin: 10px;
     cursor: pointer;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #FFF;
   }
 
   .head .grip {
